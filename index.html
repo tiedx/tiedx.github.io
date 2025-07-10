@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html id="html" lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,13 +10,20 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
 </head>
 <body class="body" id="body">
-    <div style="background-color: #080a0e; height: 30px; width: calc(100% - 20px); color: white; display: flex; align-items: center; justify-content: right; padding-right: 20px;">
+    <div class="head" id="head">
+        <h4 style="margin-right: auto;">Tiedx</h4>
         <span class="material-symbols-outlined" id="switch_light_dark">
         light_mode
         </span>
+        <span class="material-symbols-outlined" id="menu_button" style="margin-left: 5px;">
+        dehaze
+        </span>
     </div>
 
-    <p>Web của Tiedx</p>
+    <div style="background-color: green; width: 100%;
+    height: 900px; display: flex; margin-top: 30px;">
+        <p>Web của Tiedx</p>
+    </div>
 
 
 
@@ -35,22 +42,42 @@
             100% {rotate: 115deg; scale: .8;}
         }
 
+        html {
+            overflow: hidden;
+        }
         body {
             background-color: white;
             font-family: "Be Vietnam Pro";
             display: flex;
             flex-wrap: wrap;
             margin: 0;
+            flex: 1;
+            overflow-y: auto;
+            height: 100vh;
         }
         body.dark {
             background-color: black;
             color: white;
         }
+        div.head {
+            background-color: #080a0e;
+            height: 50px;
+            width: 110px;
+            color: white;
+            display: flex;
+            position: fixed;
+            align-items: center;
+            justify-content: right;
+            padding-left: 20px;
+            padding-right: 20px;
+            right: 0;
+            transition: 0.5s ease-out;
+        }
         span.material-symbols-outlined {
             user-select: none;
         }
         span#switch_light_dark {
-            font-size: 23px;
+            font-size: 20px;
             scale: 1;
             transition: .2s ease-in-out;
             text-align: center;
@@ -62,17 +89,32 @@
             animation: rotating_forward .3s ease-out;
             color: #dddddd;
         }
+
+        @media (max-width: 1365px) {
+            div.head {
+                width: calc(100% - 40px);
+            }
+        }
         
     </style>
     <script>
         let body = document.getElementById("body");
         let switch_light_dark = document.getElementById("switch_light_dark");
+        let head = document.getElementById("head");
         switch_light_dark.addEventListener("click", () => {
             body.classList.toggle("dark");
             if (body.classList.contains("dark")) {
                 switch_light_dark.innerText = "dark_mode";
             } else {
                 switch_light_dark.innerText = "light_mode";
+            }
+        })
+
+        document.addEventListener("scroll", (e) => {
+            if (document.documentElement.scrollTop < 20) {
+                head.style.setProperty("height", "50px");
+            } else {
+                head.style.setProperty("height", "30px");
             }
         })
 
